@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html><head>
+<title>Sample Form</title> 
+
+<script type="text/javascript">
+
+	function validateSubmit () { 
+		var formBlock = document.forms.login; //accesing form using document.forms
+		var nameElement = formBlock.txtName; //accessing form element as a object of login form
+		var passwordElement = formBlock.txtPassword; //accessing form element as a object of login form
+		var nameLength = nameElement.value.length;
+		var passwordLength = passwordElement.value.length;
+		if (nameLength ==0) {	
+			alert ("Name cannot be empty");
+			var label = document.getElementById("message")
+			label.innerHTML ="Please enter Name";
+			nameElement.focus();	
+		} else if(passwordLength ==0) {
+			alert ("Please enter password");
+			var label = document.getElementById("pmessage")
+			label.innerHTML ="Please enter Password";
+			passwordElement.focus();	
+		} else {
+				document.getElementById('button').disabled = true;
+				document.getElementById("submitMessage").innerHTML='Thanks for submission. Submit button is now disabled';
+		}	
+	}
+
+
+</script>
+
+<style>
+.button {
+	background: red;
+	font-weight: bold;
+	color: white;
+	min-width: 80px;
+}
+#div1 {
+	margin-left: 33%;
+	margin.top: 10%;
+	border: 1px solid;
+	border-radius: 5px;
+	min-height: 300px;
+	width:33%;
+}
+#inside {
+	padding: 10px 30px;
+}
+#submit , #message, #pmessage, #submitMessage
+{
+	color: red;	
+	font-size: small;
+}
+.blank {
+	margin-bottom: 0px;
+
+}
+</style>
+
+</head>
+<body onload="document.forms[0].elements[0].focus();">
+	<div id='div1' >
+	<div id='inside'>
+	<h4 class ='blank' style='margin-top: 5px;'> LOGIN </h4>
+	<hr/>
+	<p class ='blank'> </p>
+	<form method=”post” action=”handlepost.jsp” id='login' name ='login'>
+		<!-- regular textbox -->
+		<label for=”txtName”> Name:</label><br />
+		<input type=”text”  name=”txtName” id ='txtName' maxlength ="4" onfocus ='this.select();' 
+				onkeydown="document.getElementById('message').innerHTML ='' ;" > 
+		<label id ='message' name ='message'> </label> <br />
+		<!-- password textbox -->
+		<label for=”txtPassword”>Password:</label><br />
+
+		<input type=”password”  id = 'txtPassword' name=”txtPassword” />
+		<label id ='pmessage' name ='pmessage'> </label> <br />
+		<!-- age comboxbox (drop-down) --> 
+		<label for=”selAge”>Age:</label><br /> 
+		<select name=”selAge” >
+			<option>18-21</option> 
+			<option>22-25</option> 
+			<option>26-29</option> 
+			<option>30-35</option> 
+			<option>Over 35</option>
+		</select><br />
+
+		<!-- multiline textbox -->
+		<label for=”txtComments”>Comments:</label><br /> 
+		<textarea rows=”10” cols=”50” 
+		name=”txtComments”></textarea><br />
+		<!-- submit button -->
+		<input type='button' class = 'button' value= 'Submit' id ='button' onclick ='validateSubmit();'/> <br />
+		<label id='submitMessage' > </label>
+
+	</form> 
+	</div>
+	</div>
+</body>
+</html>
